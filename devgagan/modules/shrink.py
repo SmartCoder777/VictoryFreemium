@@ -82,10 +82,10 @@ async def token_handler(client, message):
         ])
          
         await message.reply_photo(
-            msg.photo.file_id,
+    'https://i.postimg.cc/ctyW1dtB/1538d75f-dab3-43f1-979a-144e8a8dff8e.jpg',
             caption=(
                 "Hi 👋 Welcome, Wanna intro...?\n\n"
-                "✳️ I can save posts from channels or groups where forwarding is off. I can download videos/audio from YT, INSTA, ... social platforms\n"
+                "✳️ I can save posts from channels or groups where forwarding is off.\n"
                 "✳️ Simply send the post link of a public channel. For private channels, do /login. Send /help to know more."
             ),
             reply_markup=keyboard
