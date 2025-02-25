@@ -1108,7 +1108,7 @@ async def split_and_upload_file(app, sender, target_chat_id, file_path, caption,
         return
 
     file_size = os.path.getsize(file_path)
-    start = await app.send_message(sender, f"ℹ️ File size: {file_size / (1024 * 1024):.2f} MB")
+    await app.send_message(target_chat_id, f"ℹ️ File size: {file_size // (1024 * 1024)} MB")
     PART_SIZE =  1.9 * 1024 * 1024 * 1024
 
     part_number = 0
