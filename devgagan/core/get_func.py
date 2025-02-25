@@ -309,6 +309,8 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             return
 
         # Upload media
+        free_check = 1
+        
         # await edit.edit("**Checking file...**")
         if file_size > size_limit and (free_check == 1 or pro is None):
             await edit.delete()
