@@ -272,7 +272,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             msg,
             file_name=file_name,
             progress=progress_bar,
-            progress_args=("╭─────────────────────╮\n│      **__Downloading__...**\n├─────────────────────", edit, time.time())
+            progress_args=("╭─────────────────────╮\n│      **__Downloading__...**\n├─────────────────────", int(time.time()))
         )
         
         caption = await get_final_caption(msg, sender)
@@ -869,10 +869,10 @@ async def handle_large_file(file, sender, edit, caption):
                 duration=duration,
                 progress=progress_bar,
                 progress_args=(
-                    "╭─────────────────────╮\n│       **__4GB Uploader__ ⚡**\n├─────────────────────",
-                    edit,
-                    time.time()
-                )
+    "╭─────────────────────╮\n│       **__4GB Uploader__ ⚡**\n├─────────────────────",
+    edit,
+    int(time.time())
+)
             )
         else:
             # Send as document
@@ -883,10 +883,10 @@ async def handle_large_file(file, sender, edit, caption):
                 thumb=thumb_path,
                 progress=progress_bar,
                 progress_args=(
-                    "╭─────────────────────╮\n│      **__4GB Uploader ⚡__**\n├─────────────────────",
-                    edit,
-                    time.time()
-                )
+    "╭─────────────────────╮\n│      **__4GB Uploader ⚡__**\n├─────────────────────",
+    edit,
+    int(time.time())
+)
             )
 
         from_chat = dm.chat.id
@@ -1131,7 +1131,7 @@ async def split_and_upload_file(app, sender, target_chat_id, file_path, caption,
             part_caption = f"{caption} \n\n**Part : {part_number + 1}**"
             await app.send_document(target_chat_id, document=part_file, caption=part_caption, reply_to_message_id=topic_id,
                 progress=progress_bar,
-                progress_args=("╭─────────────────────╮\n│      **__Pyro Uploader__**\n├─────────────────────", edit, time.time())
+                progress_args=("╭─────────────────────╮\n│      **__Pyro Uploader__**\n├─────────────────────", edit, int(time.time()))
             )
             await edit.delete()
             os.remove(part_file)  # Cleanup after upload
