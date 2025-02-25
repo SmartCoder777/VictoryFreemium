@@ -1,3 +1,4 @@
+
 # ---------------------------------------------------
 # File Name: get_func.py
 # Description: A Pyrogram bot for downloading files from Telegram channels or groups 
@@ -272,7 +273,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             msg,
             file_name=file_name,
             progress=progress_bar,
-            progress_args=("╭─────────────────────╮\n│      **__Downloading__...**\n├─────────────────────", int(time.time()))
+            progress_args=("╭─────────────────────╮\n│      **__Downloading__...**\n├─────────────────────", edit, time.time())
         )
         
         caption = await get_final_caption(msg, sender)
@@ -869,10 +870,10 @@ async def handle_large_file(file, sender, edit, caption):
                 duration=duration,
                 progress=progress_bar,
                 progress_args=(
-    "╭─────────────────────╮\n│       **__4GB Uploader__ ⚡**\n├─────────────────────",
-    edit,
-    int(time.time())
-)
+                    "╭─────────────────────╮\n│       **__4GB Uploader__ ⚡**\n├─────────────────────",
+                    edit,
+                    time.time()
+                )
             )
         else:
             # Send as document
@@ -883,10 +884,10 @@ async def handle_large_file(file, sender, edit, caption):
                 thumb=thumb_path,
                 progress=progress_bar,
                 progress_args=(
-    "╭─────────────────────╮\n│      **__4GB Uploader ⚡__**\n├─────────────────────",
-    edit,
-    int(time.time())
-)
+                    "╭─────────────────────╮\n│      **__4GB Uploader ⚡__**\n├─────────────────────",
+                    edit,
+                    time.time()
+                )
             )
 
         from_chat = dm.chat.id
@@ -1108,7 +1109,7 @@ async def split_and_upload_file(app, sender, target_chat_id, file_path, caption,
         return
 
     file_size = os.path.getsize(file_path)
-    await app.send_message(target_chat_id, f"ℹ️ File size: {file_size // (1024 * 1024)} MB")
+    start = await app.send_message(sender, f"ℹ️ File size: {file_size / (1024 * 1024):.2f} MB")
     PART_SIZE =  1.9 * 1024 * 1024 * 1024
 
     part_number = 0
@@ -1131,7 +1132,7 @@ async def split_and_upload_file(app, sender, target_chat_id, file_path, caption,
             part_caption = f"{caption} \n\n**Part : {part_number + 1}**"
             await app.send_document(target_chat_id, document=part_file, caption=part_caption, reply_to_message_id=topic_id,
                 progress=progress_bar,
-                progress_args=("╭─────────────────────╮\n│      **__Pyro Uploader__**\n├─────────────────────", edit, int(time.time()))
+                progress_args=("╭─────────────────────╮\n│      **__Pyro Uploader__**\n├─────────────────────", edit, time.time())
             )
             await edit.delete()
             os.remove(part_file)  # Cleanup after upload
